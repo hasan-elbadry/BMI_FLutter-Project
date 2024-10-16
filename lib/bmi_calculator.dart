@@ -10,11 +10,12 @@ class BmiCalculator extends StatefulWidget {
 class _BmiCalculatorState extends State<BmiCalculator> {
   Color basicColor = const Color.fromRGBO(25, 25, 40, 1);
 
+  DataModel user = DataModel();
   double _currentValue = 0;
   int counter1 = 0;
   int counter2 = 0;
-  bool isSelectedMale = true;
-  bool isSelectedFemale = true;
+  bool isSelectedMale = false;
+  bool isSelectedFemale = false;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,30 @@ class _BmiCalculatorState extends State<BmiCalculator> {
       bottomNavigationBar: TextButton(
           style: const ButtonStyle(
               backgroundColor: WidgetStatePropertyAll(Colors.red)),
-          onPressed: () {},
+          onPressed: () {
+            if (isSelectedMale == false && isSelectedFemale == false) {
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text('Please select male or female')));
+            } else {
+              if (counter2 == 0) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Please enter your age')));
+              }
+              if (counter1 == 0) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Please enter your weight')));
+              }
+              if (_currentValue == 0) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Please enter your height')));
+              }
+              user.age = counter2;
+              user.weight = counter1;
+              user.height = _currentValue;
+              user.gender = isSelectedMale ? 'Male' : 'Female';
+              print(user.gender);
+            }
+          },
           child: const Text(
             'Calculate',
             style: TextStyle(color: Colors.white, fontSize: 30),
@@ -54,8 +78,8 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(22),
                       color: isSelectedMale
-                          ? const Color.fromRGBO(25, 25, 40, 1)
-                          : Colors.red,
+                          ? Colors.red
+                          : const Color.fromRGBO(25, 25, 40, 1),
                     ),
                     child: const Column(
                       children: [
@@ -86,8 +110,8 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(22),
                       color: isSelectedFemale
-                          ? const Color.fromRGBO(25, 25, 40, 1)
-                          : Colors.red,
+                          ? Colors.red
+                          : const Color.fromRGBO(25, 25, 40, 1),
                     ),
                     child: const Column(
                       children: [
@@ -305,4 +329,13 @@ class _BmiCalculatorState extends State<BmiCalculator> {
       ),
     );
   }
+}
+
+class DataModel {
+  DataModel();
+
+  String gender = '';
+  double height = 0;
+  int weight = 0;
+  int age = 0;
 }
