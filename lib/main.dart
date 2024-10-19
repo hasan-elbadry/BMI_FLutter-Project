@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_5_projects/bmi_calculator.dart';
+import 'package:flutter_5_projects/result.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: const BmiCalculator(),
+      initialRoute: BmiCalculator.route,
+      routes: {
+        ResultPage.route: (context) => const ResultPage(),
+        BmiCalculator.route: (context) => const BmiCalculator(),
+      },
       debugShowCheckedModeBanner: false,
     );
   }
