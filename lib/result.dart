@@ -48,7 +48,24 @@ class ResultPage extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(12))),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [Text(user.gender)],
+                children: [
+                  Text(
+                    user.gender,
+                    style: const TextStyle(color: Colors.white, fontSize: 30),
+                  ),
+                  Text(
+                    user.height.toString(),
+                    style: const TextStyle(color: Colors.white, fontSize: 30),
+                  ),
+                  Text(
+                    user.weight.toString(),
+                    style: const TextStyle(color: Colors.white, fontSize: 30),
+                  ),
+                  Text(
+                    user.age.toString(),
+                    style: TextStyle(color: Colors.white, fontSize: 30),
+                  )
+                ],
               ),
             )
           ],
