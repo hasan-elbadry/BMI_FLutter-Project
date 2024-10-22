@@ -9,7 +9,6 @@ class ResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DataModel user = ModalRoute.settingsOf(context)!.arguments as DataModel;
-    print(user.gender);
     return Scaffold(
       bottomNavigationBar: TextButton(
           style: const ButtonStyle(
